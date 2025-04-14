@@ -1,0 +1,80 @@
+<html>
+<head>
+    <title> Search by city</title>
+    <link rel="stylesheet" href="static/search.css"> 
+    <script src="https://kit.fontawesome.com/e3261e2057.js" crossorigin="anonymous"></script>
+</head>
+<body> 
+    <h1>TRAVEL BUDDY</h1>
+    <h3 class="tagline">Discover Your Next Adventure :- Explore destinations based on your preferences</h3>
+    
+    <form action="/search" method="POST" class = "form-row">
+        <select name="query" required>
+            <option value="" disabled selected>Select a state</option>
+            {% for state in states %}
+                <option value="{{ state }}">{{ state }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>
+
+    {% if result %}
+        <h1>All popular places in {{ query }} are:</h1>
+        <div class = "form-row">
+        <form action="/budget" method="POST" class = "inline-form">
+            <input type="hidden" name="query" value="{{ query }}">
+            <input type="number" name="budget" placeholder="Enter your Budget" required value="{{ budget }}">
+            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+        {% if budget %}
+        <form action="/time" method="POST" class="inline-form">
+            <input type="hidden" name="query" value="{{ query }}">
+            <input type="hidden" name="budget" value="{{ budget }}">
+            <select  name="time" required>
+                <option value="" disabled selected>Select preferred time</option>
+                <option value="Evening">Evening</option>
+                <option value="Afternoon">Afternoon</option>
+                <option value="Morning">Morning</option>
+            </select>
+            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+        {% else %}
+        <form  action="/timewithoutbudget" method="POST" class="inline-form">
+            <input type="hidden" name="query" value="{{ query }}">
+            <select  name="time" required>
+                <option value="" disabled selected>Select preferred time</option>
+                <option value="Evening">Evening</option>
+                <option value="Afternoon">Afternoon</option>
+                <option value="Morning">Morning</option>
+            </select>
+            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+        </div>
+        {% endif %}
+
+        <div class="container">  
+            {% for row in result %}
+            <div class="data-box">
+                <div class="text-content">
+                    <p>Place: {{ row["Name"] }}</p>
+                    <p>City: {{ row["City"] }}</p>
+                    <p>State: {{ row["State"] }}</p>
+                    <p>Type of place: {{ row["Type"] }}</p>
+                    <p>Establish in: {{ row["Establishment Year"] }}</p>
+                    <p>Time Needed: {{ row["time needed to visit in hrs"] }} hours</p>
+                    <p>Rating: {{ row["Google review rating"] }}</p>
+                </div>
+                <img src="{{ row['image_url'] }}" alt="Place image">
+            </div>
+            {% endfor %}
+        </div>
+
+    {% elif query %}
+        <h2 style="text-align:center; color:white;">No results found for "{{ query }}"</h2>
+    {% else %}
+        <h2 class="wait">Still Waiting For Your Search!....</h2>
+    {% endif %}
+
+    <div class="footer">*Images are AI generated*</div>
+</body>
+</html>

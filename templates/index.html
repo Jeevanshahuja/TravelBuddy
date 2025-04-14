@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>Travel Buddy</title>
+        <link rel="stylesheet" href="static/style.css">
+    </head>
+    <body> 
+        <h1>TRAVEL BUDDY</h1>
+        <h3 class = "tagline">Discover Your Next Adventure :- Explore destinations based on your preferences</h3>
+        <div class = "slider"> 
+            <figure> 
+                <img  src="https://foodandtravel.com/imager/hours/219609/Ministry-of-Tourism-Govt-of-India-595161_Taj-Mahal-Uttar-Pradesh-Aerial_821631bb23140209ea99c8f810f75634.jpg">
+                <img  src = "https://image.kkday.com/v2/image/get/w_960%2Cc_fit%2Cq_55%2Ct_webp/s1.kkday.com/product_147336/20230908031131_Jo6iV/jpg">
+                <img  src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwuM5qBpKdNIE98_hNhd-zcwZxER03eRCTwg&s">
+                <img  src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7H6wYO3ATCmJVxHUGrp-nkQrEhALNPgESbA&s">
+                <img  src="https://foodandtravel.com/imager/hours/219609/Ministry-of-Tourism-Govt-of-India-595161_Taj-Mahal-Uttar-Pradesh-Aerial_821631bb23140209ea99c8f810f75634.jpg">
+                <img  src = "https://image.kkday.com/v2/image/get/w_960%2Cc_fit%2Cq_55%2Ct_webp/s1.kkday.com/product_147336/20230908031131_Jo6iV/jpg">
+                <img  src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwuM5qBpKdNIE98_hNhd-zcwZxER03eRCTwg&s">
+                <img  src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7H6wYO3ATCmJVxHUGrp-nkQrEhALNPgESbA&s">
+                <img  src="https://foodandtravel.com/imager/hours/219609/Ministry-of-Tourism-Govt-of-India-595161_Taj-Mahal-Uttar-Pradesh-Aerial_821631bb23140209ea99c8f810f75634.jpg">
+                <img  src = "https://image.kkday.com/v2/image/get/w_960%2Cc_fit%2Cq_55%2Ct_webp/s1.kkday.com/product_147336/20230908031131_Jo6iV/jpg">
+                <img  src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwuM5qBpKdNIE98_hNhd-zcwZxER03eRCTwg&s">
+                <img  src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7H6wYO3ATCmJVxHUGrp-nkQrEhALNPgESbA&s">
+                <img  src="https://foodandtravel.com/imager/hours/219609/Ministry-of-Tourism-Govt-of-India-595161_Taj-Mahal-Uttar-Pradesh-Aerial_821631bb23140209ea99c8f810f75634.jpg">
+                <img  src = "https://image.kkday.com/v2/image/get/w_960%2Cc_fit%2Cq_55%2Ct_webp/s1.kkday.com/product_147336/20230908031131_Jo6iV/jpg">
+                <img  src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwuM5qBpKdNIE98_hNhd-zcwZxER03eRCTwg&s">
+                <img  src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7H6wYO3ATCmJVxHUGrp-nkQrEhALNPgESbA&s">
+                <figure>
+        </div>
+        <h3> To search by city please <a href="search.html"> click here</a> </h3>
+        <h1>All popular places in India are </h1>
+        <div class="container">
+            {% for row in data %}
+            <div class="data-box">
+                <div class="text-content">
+                    <p>Place: {{ row["Name"] }}</p>
+                    <p>City: {{ row["City"] }}</p>
+                    <p>State: {{ row["State"] }}</p>
+                    <p>Type of place: {{ row["Type"] }}</p>
+                    <p>Establish in: {{ row["Establishment Year"] }}</p>
+                    <p>Time Needed: {{ row["time needed to visit in hrs"] }} hours</p>
+                    <p>Rating: {{ row["Google review rating"] }}</p>
+                </div>
+                <img src="{{ row['image_url'] }}" alt="Place image">
+            </div>
+            {% endfor %}
+        </div>
+        <div class="footer">*Images are Ai generated*</div>
+    </body>
+</html>
